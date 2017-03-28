@@ -10,7 +10,6 @@ trait DomainModel {
   type M[X] = Future[X]
 
 
-
   trait Person
   {
     def createRequest(currency: Currency,
@@ -27,7 +26,11 @@ trait DomainModel {
   trait CurrencyPoint
   {
 
+    def endpoint: String
+    
     def handleRequest(rq: CepRequest): M[Option[Rate]]
+
+    def location: Location
 
   }
 
