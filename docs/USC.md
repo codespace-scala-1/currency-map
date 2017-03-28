@@ -33,7 +33,7 @@
 Details:
  Walker: search for best currency exchange - details:
 
-   prodice  Http request from phone App, which knowns current location and sum
+   produce  Http request from phone App, which knowns current location and sum
 
   System:
     Receive request from app,
