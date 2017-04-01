@@ -29,7 +29,7 @@ object QueryDSL
 
   case class WithinFromExpr[T:Locationable](select:SelectExpr[T],distance:Distance, location:Location) extends TerminationExpr[T]
   {
-    override def query: Query[T] = Near(location,distance)
+    override def query: Query[T] = Near(implicitly[Locationable[T]], location,distance)
   }
 
 
@@ -37,4 +37,6 @@ object QueryDSL
 
 }
 
-case class Near[T:Locationable](x:Location, d:Distance) extends Query[T]
+
+
+case class Near[T](la:Locationable[T],x:Location, d:Distance) extends Query[T]

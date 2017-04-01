@@ -25,7 +25,10 @@ import com.example.currencymap.server.repository.{Query, QueryDSL}
 
     def select: QueryDSL.SelectExpr[T]
 
-    def query(q: QueryDSL.TerminationExpr[T]):M[Seq[T]]
+    def query(q: QueryDSL.TerminationExpr[T]):M[Seq[T]] =
+      query(q.query)
+
+    def query(q: Query[T]):M[Seq[T]]
 
     def lookup(k:K):M[Option[T]]
 
