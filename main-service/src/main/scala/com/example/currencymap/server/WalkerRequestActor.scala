@@ -1,6 +1,6 @@
 package com.example.currencymap.server
 
-import akka.actor.Actor
+import akka.actor.{Actor, ActorRef}
 import com.example.currencymap.{Rate, WalkerExchangeRequest}
 
 import scala.concurrent.Promise
@@ -22,6 +22,8 @@ class WalkerRequestActor extends Actor
 
   var request: WalkerExchangeRequest = _
   var endpoints: Seq[String] = Seq()
+  var whereToReply: ActorRef = _
+
 
   var replies = Seq[CepReply]()
   var nReceivedReplies = 0
@@ -34,6 +36,7 @@ class WalkerRequestActor extends Actor
       this.request = request
       this.endpoints = endpoints
       nCeps = endpoints.size
+      whereToReply = context.sender()
       context.become(process)
   }
 
