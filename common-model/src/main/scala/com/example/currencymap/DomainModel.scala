@@ -21,6 +21,7 @@ case class CepRequest(currency: Currency,
 
 case class Location(lat:BigDecimal,lon:BigDecimal)
 
+case class CepView(name:String,location:Location,rate:Rate)
 
 trait DomainModel {
 
@@ -75,7 +76,10 @@ trait DomainModel {
   {
 
 
-    def handleWalkerRequest(rq:WalkerExchangeRequest):M[Seq[CurrencyPoint]] =
+    //def handleWalkerRequest(rq:WalkerExchangeRequest):M[Seq[CurrencyPoint]] =
+
+
+    def handleWalkerRequest(rq:WalkerExchangeRequest):M[Seq[CepView]] =
     {
       for{ceps <- askCeps(rq)
           best <- selectBest(rq,ceps)
@@ -83,10 +87,10 @@ trait DomainModel {
     }
 
 
-    def askCeps(exchaneRequest: WalkerExchangeRequest):M[Seq[CurrencyPoint]]
+    def askCeps(exchaneRequest: WalkerExchangeRequest):M[Seq[CepView]]
 
 
-    def selectBest(exchangeRequest: WalkerExchangeRequest, candidates: Seq[CurrencyPoint]): M[Seq[CurrencyPoint]]
+    def selectBest(exchangeRequest: WalkerExchangeRequest, candidates: Seq[CepView]): M[Seq[CepView]]
 
 
   }

@@ -14,7 +14,16 @@ import com.example.currencymap.server.repository.{Query, QueryDSL}
     def setId(obj:T,id:K): T
 
     def idFromLong(l:Long): K
+
+
+
   }
+
+  case class Field[F,T](
+                         val name: String,
+    val  getter: T=>F,
+    val  setter: (T, F) => F
+                       )
 
 
   trait DAO[M[_],K,T] {

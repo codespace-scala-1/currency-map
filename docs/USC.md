@@ -44,6 +44,7 @@ Details:
 
   System:
     Aggregate received requests from CEPs, select N top and send back to Walker
+     for each CEP:  (name, Location, Rate)
     Exception:  no replies.
 
   Walker:

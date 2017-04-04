@@ -4,6 +4,7 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicLong
 import java.util.function.BiFunction
 
+
 import cats.MonadError
 import com.example.currencymap.Location
 import com.example.currencymap.server.{DAO, DBLenses}
@@ -19,11 +20,16 @@ class InMemDAO[M[_],K,T](
       new QueryDSL.SelectExpr[T] {}
 
   override def query(q: Query[T]): M[Seq[T]] = {
+    System.err.println(s"parse query: $q")
+
+
     def distance(a:Location,b:Location):Long = {
       val dx = (a.lat - b.lat).toDouble
       val dy = (a.lon - b.lon).toDouble
       // TODO: read correct projection
-      Math.sqrt( dx*dx + dy*dy ).toLong
+      val r = Math.sqrt( dx*dx + dy*dy ).toLong
+      System.err.println(s"distance($a,$b)=$r")
+      r
     }
 
     val predicat: T => Boolean = {

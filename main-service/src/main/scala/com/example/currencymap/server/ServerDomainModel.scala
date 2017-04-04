@@ -14,6 +14,8 @@ trait ServerDomainModel extends DomainModel {
 
   val repository: Repository[M]
 
+  val config: Configuration = DefaultConfiguration
+
   implicit val ec: ExecutionContext = actorSystem.dispatcher
 
   override val mm:MonadError[Future,Throwable] = cats.instances.future.catsStdInstancesForFuture
