@@ -15,7 +15,8 @@ class InMemDAO[M[_],K,T](
      override val dbLenses: DBLenses[K,T])  extends DAO[M,K,T]
 {
 
-  override def select: QueryDSL.SelectExpr[T] = ???
+  override def select: QueryDSL.SelectExpr[T] =
+      new QueryDSL.SelectExpr[T] {}
 
   override def query(q: Query[T]): M[Seq[T]] = {
     def distance(a:Location,b:Location):Long = {
@@ -35,7 +36,8 @@ class InMemDAO[M[_],K,T](
     val r:Seq[T] = values.reduce[Seq[T]](
       1,
       new BiFunction[K,T,Seq[T]] {
-        override def apply(t: K, u: T): Seq[T] = Seq(u)
+        override def apply(t: K, u: T): Seq[T] =
+        {  if (predicat(u)) Seq(u) else Seq()  }
       },
       new BiFunction[Seq[T],Seq[T],Seq[T]] {
         override def apply(t: Seq[T], u: Seq[T]): Seq[T] = t ++ u

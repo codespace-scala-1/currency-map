@@ -1,6 +1,7 @@
 package com.example.currencymap.server
 
 import akka.actor.ActorSystem
+import com.example.currencymap.server.repository.inmem.InMemRepositoryDomainModel
 
 
 object Main {
@@ -15,6 +16,7 @@ object Main {
 
     val domainModel = new ServerDomainModel
                         with MainSystemModule
+                        with InMemRepositoryDomainModel
      {
       override val actorSystem: ActorSystem = implicitly[ActorSystem]
      }
