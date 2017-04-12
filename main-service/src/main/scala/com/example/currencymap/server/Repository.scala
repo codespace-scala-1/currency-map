@@ -1,5 +1,7 @@
 package com.example.currencymap.server
 
+import language.higherKinds
+
 import cats.MonadError
 import com.example.currencymap.DomainModel
 import com.example.currencymap.server.model.CepRecord

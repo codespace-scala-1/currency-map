@@ -21,11 +21,21 @@ lazy val mainService = (project in file("main-service")).
     libraryDependencies ++= Seq(
       "com.typesafe.akka" %% "akka-actor" % "2.4.17",
       "com.typesafe.akka" %% "akka-http" % "10.0.5",
-      "com.typesafe.akka" %% "akka-testkit" % "2.4.17" % "test"
+      "com.typesafe.akka" %% "akka-testkit" % "2.4.17" % "test",
+      "com.typesafe.akka" %% "akka-stream" % "2.4.17",
+      "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test"
     )
 )
 
 lazy val currencyPoint = (project in file("currency-point")).settings(commonSettings: _*)
+    .dependsOn(commonModel)
+    .settings(
+     libraryDependencies ++= Seq(
+       "com.typesafe.akka" %% "akka-http" % "10.0.5",
+       "com.typesafe.akka" %% "akka-stream" % "2.4.17",
+       "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test"
+     )
+    )
 
 lazy val httpClient = (project in file("client/http")).settings(commonSettings: _*)
 

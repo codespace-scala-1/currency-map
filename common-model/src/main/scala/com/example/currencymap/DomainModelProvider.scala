@@ -2,6 +2,8 @@ package com.example.currencymap
 
 import cats.MonadError
 
+import language.higherKinds
+
 
 trait DomainModelProvider {
 

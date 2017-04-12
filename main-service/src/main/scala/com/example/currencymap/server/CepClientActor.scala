@@ -14,9 +14,9 @@ class CepClientActor(randomService: RandomService) extends Actor {
       val endpoint = cep.endpoint
       // TODO: call endpoint
       val rate = 27.02
-      if (randomService.nextDouble() < 0.9) {
+      //if (randomService.nextDouble() < 0.9) {
         sender() ! CepReply(cep,Some(rate+randomService.nextDouble()))
-      }
+      //}
   }
 
 }
