@@ -98,10 +98,6 @@ trait DomainModel {
 
 
 
-  //  Walker: search for best currency exchange
-
-  // produce  Http request from phone App, which knowns current location and sum
-
 
 
 

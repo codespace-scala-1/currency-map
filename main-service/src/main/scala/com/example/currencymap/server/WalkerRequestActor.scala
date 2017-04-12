@@ -36,13 +36,14 @@ class WalkerRequestActor(/* TODO: config:Configuration*/) extends Actor
   var nReceivedReplies = 0
   var nCeps = 0
 
-  val overallTimeout: FiniteDuration = 1 minute
-  val cepAskActorSelection = context.actorSelection("/user/selection")
+  val overallTimeout: FiniteDuration = 1.minute
+  val cepAskActorSelection = context.actorSelection("/user/ceps")
 
   implicit val ec = context.dispatcher
 
   override def receive: Receive = {
     case ProcessRequest(request,ceps) =>
+      System.err.println("ProcessRequest")
       this.request = request
       this.ceps = ceps
       nCeps = ceps.size

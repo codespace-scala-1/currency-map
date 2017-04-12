@@ -21,6 +21,10 @@ trait MainSystemModule extends DomainModel {
   class MainSystem extends System {
 
 
+    def await[A](l:M[A])(implicit evidence: M[A] <:< Future[A]):A=
+    {
+      Await.result(l.asInstanceOf[Future[A]],1 minute)
+    }
 
     override def askCeps(exchangeRequest: WalkerExchangeRequest): M[Seq[CepView]] = {
 
@@ -28,7 +32,7 @@ trait MainSystemModule extends DomainModel {
 
       val replyGather = actorSystem.actorOf(Props(classOf[WalkerRequestActor]))
 
-      val views = for {ceps <- repository.ceps.query(
+      for {ceps <- repository.ceps.query(
             select[CepRecord](v =>
               v.within(exchangeRequest.radius) from exchangeRequest.location
             ))
@@ -36,8 +40,6 @@ trait MainSystemModule extends DomainModel {
       } yield {
         reply.replies map { case (cep,rate) => CepView(cep.endpoint,cep.location,rate) }
       }
-
-      views
 
     }
 

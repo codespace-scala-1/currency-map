@@ -24,6 +24,8 @@ object Main {
 
     val system = new domainModel.MainSystem
 
+    val ceps = CepClientActor.createAll(mainActorSystem,5,new RandomService {})
+
   }
 
 }

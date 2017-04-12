@@ -6,9 +6,16 @@ import com.example.currencymap.DomainModel
 
 import scala.concurrent.{ExecutionContext, Future}
 
+trait AppContext
+{
+
+
+}
+
 trait ServerDomainModel extends DomainModel {
 
   override type M[X] = Future[X]
+
 
   val actorSystem: ActorSystem
 
