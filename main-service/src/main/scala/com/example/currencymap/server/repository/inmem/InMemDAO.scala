@@ -10,6 +10,7 @@ import com.example.currencymap.Location
 import com.example.currencymap.server.{DAO, DBLenses}
 import com.example.currencymap.server.repository.{Near, Query, QueryDSL}
 
+import language.higherKinds
 
 class InMemDAO[M[_],K,T](
                         implicit override val mMonad: MonadError[M, Throwable],

@@ -15,6 +15,8 @@ object CepRecord
 
   type Id = IdType[Long,CepRecord]
 
+  def Id(v:Long) = new Id(v)
+
   //Phantom types:
   //type @@[A,B] = A { type Tag = B }
   //type Id = Long @@ CepRecord

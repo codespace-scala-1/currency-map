@@ -23,7 +23,9 @@ lazy val mainService = (project in file("main-service")).
       "com.typesafe.akka" %% "akka-http" % "10.0.5",
       "com.typesafe.akka" %% "akka-testkit" % "2.4.17" % "test",
       "com.typesafe.akka" %% "akka-stream" % "2.4.17",
-      "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test"
+      "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test",
+      "com.typesafe.akka" %% "akka-persistence" % "2.4.17",
+      "com.typesafe.akka" %% "akka-persistence-query-experimental" % "2.4.17"
     )
 )
 
@@ -33,7 +35,10 @@ lazy val currencyPoint = (project in file("currency-point")).settings(commonSett
      libraryDependencies ++= Seq(
        "com.typesafe.akka" %% "akka-http" % "10.0.5",
        "com.typesafe.akka" %% "akka-stream" % "2.4.17",
-       "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test"
+       "com.typesafe.akka" %% "akka-stream-testkit" % "2.4.17" % "test",
+       "io.circe" %% "circe-generic" % "0.7.0",
+       "io.circe" %% "circe-parser" % "0.7.0",
+       "de.heikoseeberger" %% "akka-http-circe" % "1.15.0"
      )
     )
 
